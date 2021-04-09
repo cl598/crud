@@ -3,12 +3,12 @@ const express = require('express');
 const open = require("open");
 const bodyParser = require('body-parser');
 var cors = require('cors')
-const app = express();
-app.use(cors())
-app.use(express.static('docs'));
 
 // create express app
+const app = express();
 
+app.use(cors())
+app.use(express.static('docs'));
 
 // Setup server port
 const port = process.env.PORT || 5000;
@@ -20,7 +20,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 // define a root route
-
+app.get('/', (req, res) => {
+    res.send("Hello World");
+});
 // Require employee routes
 const citiesRoutes = require('./routes/cities.routes')
 
